@@ -8,6 +8,7 @@ export class MongoGetUsersRepository implements IGetUsersRepository {
       .collection<Omit<User, "id">>("users")
       .find({})
       .toArray();
+
     return users.map(({ _id, ...rest }) => ({
       ...rest,
       id: _id.toHexString(),
